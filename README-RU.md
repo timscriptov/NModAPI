@@ -33,12 +33,12 @@ NMod_OnActivityFinish(JNIEnv* env,jobject thiz)<br>
 env a ppinter to JNIEnv<br>
 thiz is a jobject.[Lcom/mojang/minecraftpe/MainActivity;]<br>
 <br>
-Не понимаетп? Посмотрите наши примеры!<br>
+Не понимаете? Посмотрите наши примеры!<br>
 
 ## Методы модификации<br>
-After the above steps,how can we modify minecraft?<br>
-Substrate Framework provides modification method:MSHookFunction.MSHookFunction can replace default methods defines in libminecraftpe.so with our own methods,and offers a way to invoke default methods.<br>
-MSHookFunction requires three arguments:<br>
+После вышеуказанных шагов, как мы можем изменить minecraft?<br>
+Substrate Framework предоставляет метод модификации: MSHookFunction.MSHookFunction может заменить методы по умолчанию, заданные в libminecraftpe.so нашими собственными методами, и предлагает способ вызова методов по умолчанию.<br>
+MSHookFunction требует три аргумента:<br>
 MSHookFunction( (void*)& DefaultMethod,<br>
                 (void*)& ReplacementMethod,<br>
                 (void**)& MethodPointerOfDefaultMethod);<br>
@@ -59,7 +59,7 @@ void explode_replacement(Explosion* self)
     //If you want to explode properly instead of no explosion,invoke the method pointer.
     explode_default(self);
 }
-//Register MSHookFunction in NMod_OnLoad
+//Регистрация MSHookFunction в NMod_OnLoad
 extern "C" void NMod_OnLoad(JavaVM*,JNIEnv*,const char*,const char*,const char*)
 {
     MSHookFunction( (void*)& Explosion::explode,
@@ -77,10 +77,10 @@ NModAPI читает информацию nmod, читая nmod_manifest.json.<b
   //Имя NMod.
   "name" : "My NMod",
   
-  //Имя пакета NMod. Must equal to package name defines in AndroidManifest.xml
+  //Имя пакета NMod. Имя пакета должно соответствовать пакету в AndroidManifest.xml!
   "package_name" : "my.nmod.package.name",
   
-  //Автор NMod. Write your name or your organization name here.
+  //Автор NMod. Напишите здесь свое имя или название вашей организации.
   "author" : "Me or My Company",
   
   //NMod native libraries.
@@ -88,14 +88,14 @@ NModAPI читает информацию nmod, читая nmod_manifest.json.<b
   [
     {
       //имя native library:
-      //must match your native library name!
+      //должен соответствовать имени вашей native library!
       "name" : "libmynmodlib.so",
       //whether the nmod uses nmodapi:
       //use_api must be true if you use game listeners(NMod_OnLoad,NMod_OnActivityCreate,NMod_OnActivityFinish).
       "use_api" : "true"
     }
     
-    //You can even load more libraries...
+    //Вы даже можете загружать больше библиотек ...
     //,
     //{
     //  "name" : "libmynmodlib2.so",
@@ -138,11 +138,11 @@ NModAPI читает информацию nmod, читая nmod_manifest.json.<b
     {
       //path - путь текстового файла в assets.
       //Файл замены и файл по умолчанию должны определяться в assets nmod и в assets minecraft одновременно.
-      //In this case, NModAPI will read assets/resource_packs/vanilla/texts/en_US.lang
+      //В этом случае NModAPI будет читать assets/resource_packs/vanilla/texts/en_US.lang
       "path" : "resource_packs/vanilla/texts/en_US.lang",
       
-      //There are three kinds of text edit mode: append,prepend,replace.
-      //Default value is replace.
+      //Существует три вида режима редактирования текста: объединение, prepend, замена.
+      //Значение по умолчанию - замена.
       //If you defines a different mode,THE TEXT EDIT WILL NOT WORK!
       //MODE: append: append text after the source text.
       //MODE: prepend: prepend text before the source text.
