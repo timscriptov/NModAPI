@@ -203,6 +203,6 @@ Warning: DO NOT put two nmod_manifest.json in different directories!<br>
 Tips: NMod packed into file cannot auto update.So it is mostly used for publishing NMods.
 ## Haven't Understand?
 - View our NMod Examples!<br>
-<https://github.com/ModelPart/NMOD-Examples>
+<https://github.com/TimScriptov/NMOD-Examples>
 - View the source code of NModAPI!<br>
-<https://github.com/ModelPart/ModdedPE>
+<https://github.com/TimScriptov/ModdedPE>
