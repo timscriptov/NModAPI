@@ -111,7 +111,7 @@ If you want to use nmod json editor or nmod text editor,you can also define edit
   "version_name" : "1.0",
 
   //Minecraft version
-  "minecraft_version_name" : "1.11.0.11",
+  "minecraft_version_name" : "1.11.0.1",
   
   //Nmod description:
   "description" : "My NMod Description",
