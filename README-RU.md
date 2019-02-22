@@ -109,6 +109,9 @@ NModAPI читает информацию nmod, читая nmod_manifest.json.<b
   
   //Версия:
   "version_name" : "1.0",
+
+  //Minecraft version
+  "minecraft_version_name" : "1.11.0.1",
   
   //Описание Nmod:
   "description" : "My NMod Description",
