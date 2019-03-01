@@ -70,7 +70,7 @@ extern "C" void NMod_OnLoad(JavaVM*,JNIEnv*,const char*,const char*,const char*)
 ## NMod Manifest<br>
 NModAPI read nmod information by reading nmod_manifest.json.<br>
 If you want to use nmod json editor or nmod text editor,you can also define edit info in it!<br>
-```json
+```gson
 {
   //Tips : You needn't to define all elements in this json file.
   
