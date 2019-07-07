@@ -10,10 +10,10 @@ NMod's full name is Native-NMod.Native-Mod modifies Minecraft with native code(c
 But,NMods isn't easy to make.C++ Programming Language is much more difficult that JavaScript,and native modification methods is hard to understand.The following will tell you how to develop NMods.<br>
 
 ## Preparation<br>
-1.C++ Programming Language skills<br>
-2.An android native code compiler(Android Studio,Eclipse,AIDE,ect.)<br>
-3.Some skills to build shared native libraries(*.so)<br>
-4.Json Syntax knowledges.<br>
+1. C++ Programming Language skills<br>
+2. An Android IDE that supports NDK (Android Studio,Eclipse,AIDE,etc.)<br>
+3. Some skills to build shared native libraries(*.so)<br>
+4. Json Syntax knowledges.<br>
 
 ## Linked Libraries<br>
 Native-Mods links libsubstrate.so and libminecraftpe.so to perform modifications.Make sure you have linked module substrate and minecraftpe.<br>
