@@ -1,18 +1,18 @@
 # Документация NModAPI
 
 ## Что такое NMod?<br>
-Полное имя NMod - Native-NMod. Native-Mod модифицирует Minecraft с помощью собственного кода (C/C++), поэтому он называется NMod. Как мы все знаем, Minecraft Pocket Edition в основном написан на C++. Чтобы получить лучшие эффекты модификации, чем modpe scripts, почему бы вам не научиться разрабатывать NMOD?<br>
-Но NMods нелегко сделать. Язык программирования C++ очень сложный. Ниже рассказывается, как разработать NMods.<br>
+Полное имя NMod - Native-Mod. Native-Mod модифицирует Minecraft с помощью native кода (C/C++), поэтому он называется NMod. Как мы все знаем Minecraft Pocket Edition написан на C++.<br>
+NMods сложен в написании. Язык программирования C++ очень сложный. Ниже рассказывается, как разработать свои NMods.<br>
 
 ## Подготовка<br>
-1. Навыки программирования на C++<br>
+1. Навыки программирования на C/C++<br>
 2. Компилятор кода для Android (Android Studio, Eclipse, AIDE и др.)<br>
 3. Некоторые навыки создания библиотек (*.so)<br>
-4. Знание синтаксиса Json.<br>
+4. Знание синтаксиса Json<br>
 
 ## Объединение библиотек<br>
-Native-Mods ссылается на libsubstrate.so и libminecraftpe.so для выполнения модификаций. Убедитесь, что вы объеденили модуль substrate и файл minecraftpe.<br>
-(Вы можете просмотреть наши примеры, чтобы узнать, как связать эти библиотеки.)<br>
+Native-Mods ссылается на libsubstrate.so и libminecraftpe.so для выполнения модификаций. Убедитесь, что вы объеденили модуль substrate и minecraftpe.<br>
+(Вы можете посмотреть наши примеры, чтобы узнать, как объеденить эти библиотеки.)<br>
 
 ## Game Listeners<br>
 NModAPI provides some listeners to tell each NMod when the nmod is loaded,the game is started or finished.You only need to define these methods,then NModAPI will invoke them.<br>
@@ -37,15 +37,15 @@ thiz is a jobject.[Lcom/mojang/minecraftpe/MainActivity;]<br>
 
 ## Методы модификации<br>
 После вышеуказанных шагов, как мы можем изменить minecraft?<br>
-Substrate Framework предоставляет метод модификации: MSHookFunction.MSHookFunction может заменить методы по умолчанию, заданные в libminecraftpe.so нашими собственными методами, и предлагает способ вызова методов по умолчанию.<br>
+Substrate Framework предоставляет метод модификации: MSHookFunction. MSHookFunction может заменить методы по умолчанию, заданные в libminecraftpe.so нашими собственными методами, и предлагает способ вызова методов по умолчанию.<br>
 MSHookFunction требует три аргумента:<br>
 MSHookFunction( (void*)& DefaultMethod,<br>
                 (void*)& ReplacementMethod,<br>
                 (void**)& MethodPointerOfDefaultMethod);<br>
-Например, если мы хотим заменить взрыв :: explode() в libminectpepe.so, мы можем написать:
+Например, если мы хотим заменить Explosion :: explode() в libminectpepe.so, мы можем написать:
 
 ```cpp
-//Определить метод по умолчанию
+//Определяем метод по умолчанию
 class Explosion
 {
     public:
@@ -56,11 +56,11 @@ void (*explode_default)(Explosion*);
 void explode_replacement(Explosion* self)
 {
     //Do Something
-    //If you want to explode properly instead of no explosion,invoke the method pointer.
+    //If you want to explode properly instead of no explosion, invoke the method pointer.
     explode_default(self);
 }
 //Регистрация MSHookFunction в NMod_OnLoad
-extern "C" void NMod_OnLoad(JavaVM*,JNIEnv*,const char*,const char*,const char*)
+extern "C" void NMod_OnLoad(JavaVM*, JNIEnv*, const char*, const char*, const char*)
 {
     MSHookFunction( (void*)& Explosion::explode,
                 (void*)& explode_replacement,
@@ -110,7 +110,7 @@ NModAPI читает информацию nmod, читая nmod_manifest.json.<b
   //Версия:
   "version_name" : "1.0",
 
-  //Minecraft version
+  //Для какой версии Minecraft
   "minecraft_version_name" : "1.11.0.1",
   
   //Описание Nmod:
@@ -121,7 +121,7 @@ NModAPI читает информацию nmod, читая nmod_manifest.json.<b
   
   
   //NMod Banner
-  // Mod Banner - это изображение на главной странице.
+  //Mod Banner - это изображение на главной странице.
   
   //Заголовок баннера - это текстовое представление, лежащее под изображением. По умолчанию это имя NMOD.
   "banner_title" : "My NMod is the Best!",
@@ -192,13 +192,13 @@ NModAPI читает информацию nmod, читая nmod_manifest.json.<b
 }
 ```
 ## Упакуйте свой NMod!
-- Way 1: Упаковка в apk.
+- Способ 1: Упаковка в apk.
 Если вы упакуете nmod в файл apk, его можно установить менеджером пакетов Android и прочитать NModAPI.<br>
 В этом случае nmod_manifest.json следует поместить в активы. (assets/nmod_manifest.json). Библиотеки должны быть упакованы в lib/CPU_ARCH/.<br>
 Советы: NModAPI читает только два вида CPU_ARCH: armeabi-v7a и x86.<br>
 Советы: NMod, установленный диспетчером Android Package, может автоматически обновляться, если вы устанавливаете новую версию nmod. Так что упаковка в apk в основном используется для разработки NMods.<br>
 Предупреждение: package_name определяется в nmod_manifest.json, которое должно соответствовать пакету в AndroidManifest.xml!<br>
-- Way 2: Упаковка в файл.
+- Способ 2: Упаковка в файл.
 Не нравится установка apk? Вы можете упаковать свой NMOD в файл!<br>
 Этот файл может быть (*.apk, *.zip, *.nmod, *.mcnmod).<br>
 В этом случае nmod_manifest.json можно поместить в активы dir или root dir (assets/nmod_manifest.json или nmod_manifest.json).<br>
