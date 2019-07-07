@@ -1,5 +1,10 @@
 # NModAPI Document
 
+## Other Languages
+- [English](README.md) (Current) 
+- [Pусский](README-RU.md)
+- [简体中文](README-zh-CN.md)
+
 ## What is NMod?<br>
 NMod's full name is Native-NMod.Native-Mod modifies Minecraft with native code(c/c++),so it is called NMod.As we all know,Minecraft(Pocket Edition) is mainly made with c++.To get better modification effects than modpe scripts,why don't you learn to make NMods?<br>
 But,NMods isn't easy to make.C++ Programming Language is much more difficult that JavaScript,and native modification methods is hard to understand.The following will tell you how to develop NMods.<br>
