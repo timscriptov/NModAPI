@@ -70,7 +70,7 @@ extern "C" void NMod_OnLoad(JavaVM*, JNIEnv*, const char*, const char*, const ch
 ## NMod Manifest<br>
 NModAPI читает информацию nmod, читая nmod_manifest.json.<br>
 Если вы хотите использовать редактор nmod json или текстовый редактор nmod, вы также можете определить информацию редактирования в нём!<br>
-```json
+```jsonc
 {
   //Советы. Вам не нужно определять все элементы в этом json-файле.
   
