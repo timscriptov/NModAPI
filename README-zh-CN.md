@@ -101,7 +101,7 @@ extern "C" void NMod_OnLoad(JavaVM*,JNIEnv*,const char*,const char*,const char*)
 
 NModAPI 通过读取 `nmod_manifest.json` 来获取 NMod 配置。你也可以在配置中编辑 `assets` 下的 Json 与文本。
 
-```json
+```jsonc
 {
   // 提示：你不用定义该配置文件中的所有内容。
   
